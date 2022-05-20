@@ -25,14 +25,14 @@ namespace WebClientForAPI.Controllers
         public async Task<string> LoginAsync(UserViewModel userViewModel)
         {
             var httpClient = _httpClientFactory.CreateClient("ClientAPI");
-            var response = await httpClient.GetAsync($"token?login={userViewModel.Login}&password={userViewModel.Password}");
+            var request = await httpClient.GetAsync($"token?login={userViewModel.Login}&password={userViewModel.Password}");
 
-            if (!response.IsSuccessStatusCode)
+            if (!request.IsSuccessStatusCode)
             {
-                return response.ReasonPhrase;
+                return request.ReasonPhrase;
             }
 
-            var contentStream = await response.Content.ReadAsStringAsync();
+            var contentStream = await request.Content.ReadAsStringAsync();
             var user = JsonConvert.DeserializeObject<UserViewModel>(contentStream);
             return user.Token;
         }
