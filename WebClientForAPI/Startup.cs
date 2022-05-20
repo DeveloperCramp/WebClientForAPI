@@ -23,6 +23,11 @@ namespace WebClientForAPI
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+            services.AddHttpClient("ClientAPI", c =>
+            {
+                c.BaseAddress = new Uri("http://178.57.218.210:198/");
+                c.DefaultRequestHeaders.Add("Accept", "application/json");
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
