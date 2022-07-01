@@ -10,7 +10,6 @@ namespace WebClientForAPI.Controllers
     public class UserController : Controller
     {
         private readonly IHttpClientFactory _httpClientFactory;
-
         public UserController(IHttpClientFactory httpClientFactory)
         {
             _httpClientFactory = httpClientFactory;
@@ -22,19 +21,22 @@ namespace WebClientForAPI.Controllers
         }
 
         [HttpPost]
-        public async Task<string> LoginAsync(UserViewModel userViewModel)
+
+        public async Task<ActionResult> LoginAsync(UserViewModel userViewModel)
         {
-            var httpClient = _httpClientFactory.CreateClient("ClientAPI");
-            var request = await httpClient.GetAsync($"token?login={userViewModel.Login}&password={userViewModel.Password}");
+            var client = _httpClientFactory.CreateClient("ClientAPI");
+            var request = await client.GetAsync($"token?login={userViewModel.Login}&password={userViewModel.Password}");
 
             if (!request.IsSuccessStatusCode)
             {
-                return request.ReasonPhrase;
+                return View();
             }
 
+            //Get Token
             var contentStream = await request.Content.ReadAsStringAsync();
-            var user = JsonConvert.DeserializeObject<UserViewModel>(contentStream);
-            return user.Token;
+            var result = JsonConvert.DeserializeObject<UserViewModel>(contentStream);
+            TempData["token"] = result.Token;
+            return RedirectToAction("Index", "Terminal");
         }
     }
 }
