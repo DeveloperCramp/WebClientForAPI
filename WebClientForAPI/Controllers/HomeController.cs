@@ -20,7 +20,7 @@ namespace WebClientForAPI.Controllers
 
         public IActionResult Index()
         {
-            return View();
+            return RedirectToAction(nameof(UserController.Login), "User");
         }
 
         public IActionResult Privacy()

@@ -1,0 +1,15 @@
+﻿@model UserViewModel
+
+@*@{
+    ViewData["Title"] = "Авторизация";
+    }*@
+
+<form method=post>
+    <label asp-for="Login">Логин:</label><br />
+    <input asp-for="Login" size="30" /> <br />
+
+    <label asp-for="Password">Пароль:</label><br />
+    <input asp-for="Password" size="30" /> <br />
+
+    <button class="btn btn-primary w-25" type="submit" asp-controller="User" asp-action="Login">Войти</button>
+</form>
