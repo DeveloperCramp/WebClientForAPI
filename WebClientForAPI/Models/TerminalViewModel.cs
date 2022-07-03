@@ -4,6 +4,10 @@
     {
         public int Id { get; set; }
         public string Name { get; set; }
+        public int Parameter1 { get; set; }
+        public int Parameter2 { get; set; }
+        public int Parameter3 { get; set; }
+
         public string Parameter_name1 { get; set; }
         public string Parameter_name2 { get; set; }
         public string Parameter_name3 { get; set; }
