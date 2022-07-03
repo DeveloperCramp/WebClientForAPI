@@ -1,13 +1,13 @@
 ﻿@model UserViewModel
-@*@{
+
+@{
     ViewData["Title"] = "Авторизация";
-    }*@
+    }
 
 <form method=post>
     <div class="container">
         <div class="row">
             <div class="col text-center">
-                <input type="hidden" name="token" />
                 <label asp-for="Login">Логин:</label><br />
                 <input asp-for="Login" size="30" /> <br />
                 <p></p>
