@@ -1,0 +1,30 @@
+﻿@model TerminalViewModel
+
+@{
+    ViewData["Title"] = "Терминал";
+    }
+
+    <form method=post>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-auto align-content-center">
+                <label asp-for="Id">Номер терминала:</label><br />
+                <input asp-for="Id" size="30" /> <br />
+                <p></p>
+                <label asp-for="Name">Команда:</label><br />
+                <input asp-for="Name" size="30" /> <br />
+                <p></p>
+                 <label asp-for="Parameter_name1">@Model.Parameter_name1</label><br />
+                <input asp-for="Parameter1" size="30" placeholder="@Model.Parameter_default_value1"/> <br />
+                <p></p>
+                 <label asp-for="Parameter_name2"></label><br />
+                <input asp-for="Parameter2" size="30" placeholder="@Model.Parameter_default_value2"/> <br />
+                <p></p>
+                 <label asp-for="Parameter_name3"></label><br />
+                <input asp-for="Parameter3" size="30" placeholder="@Model.Parameter_default_value3"/> <br />
+                <p></p>
+                <button class="btn btn-dark w-auto" input type="submit" asp-controller="Terminal" asp-action="SetTerminal" role="button">Отправить</button>
+            </div>
+        </div>
+    </div>
+</form>
