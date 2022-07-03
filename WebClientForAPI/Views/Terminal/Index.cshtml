@@ -2,29 +2,48 @@
 
 @{
     ViewData["Title"] = "Терминал";
-    }
+}
 
-    <form method=post>
-    <div class="container">
-        <div class="row">
-            <div class="col-md-auto align-content-center">
-                <label asp-for="Id">Номер терминала:</label><br />
-                <input asp-for="Id" size="30" /> <br />
-                <p></p>
-                <label asp-for="Name">Команда:</label><br />
-                <input asp-for="Name" size="30" /> <br />
-                <p></p>
-                 <label asp-for="Parameter_name1">@Model.Parameter_name1</label><br />
-                <input asp-for="Parameter1" size="30" placeholder="@Model.Parameter_default_value1"/> <br />
-                <p></p>
-                 <label asp-for="Parameter_name2"></label><br />
-                <input asp-for="Parameter2" size="30" placeholder="@Model.Parameter_default_value2"/> <br />
-                <p></p>
-                 <label asp-for="Parameter_name3"></label><br />
-                <input asp-for="Parameter3" size="30" placeholder="@Model.Parameter_default_value3"/> <br />
-                <p></p>
-                <button class="btn btn-dark w-auto" input type="submit" asp-controller="Terminal" asp-action="SetTerminal" role="button">Отправить</button>
+<form method=post>
+    <div class="container overflow-hidden">
+        <div class="row my-5">
+            <div class="col">
+
+                <div class="float-left">
+                    <label asp-for="Id">ID Терминала:</label>
+                    <input asp-for="Id" size="10" />
+                </div>
+
+                <div class="float-right">
+                    <select style="width:500px">
+                        @foreach (var item in Model.Items)
+                        {
+                            <option>@item.Name</option>
+                        }
+                    </select>
+                </div>
+
             </div>
+        </div>
+    </div>
+
+    <div class="row my-5">
+        <div class="col-md-auto text-center ">
+            <label asp-for="Parameter_name1">@Model.Parameter_name1</label>
+            <input asp-for="Parameter1" size="30" placeholder="@Model.Parameter_default_value1" />
+
+            <label asp-for="Parameter_name2"></label>
+            <input asp-for="Parameter2" size="30" placeholder="@Model.Parameter_default_value2" />
+
+            <label asp-for="Parameter_name3"></label>
+            <input asp-for="Parameter3" size="30" placeholder="@Model.Parameter_default_value3" />
+
+        </div>
+
+    </div>
+    <div class="row my-5">
+        <div class="col">
+            <button class="btn btn-dark w-auto float-right" input type="submit" asp-controller="Terminal" asp-action="SendCommand" role="button">Отправить</button>
         </div>
     </div>
 </form>
